@@ -3,7 +3,6 @@ using MedicalStoreManagementSystem_AdminPanel.ENT;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -106,12 +105,12 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
             #region Customer Add
             if (balCustomer.Insert(entCustomer))
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "insertAlert();", true);
                 txtAmount.Text = "";
                 txtContactNo.Text = "";
                 txtCustomerName.Text = "";
                 rblPaymentMethod.SelectedValue = null;
 
-                Response.Redirect("~/AdminPanel/Customer/CustomerList.aspx");
             }
             else
             {

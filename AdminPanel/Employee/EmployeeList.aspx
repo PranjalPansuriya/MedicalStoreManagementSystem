@@ -1,15 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content/MedicalStoreAdminPanel.master" AutoEventWireup="true" CodeFile="EmployeeList.aspx.cs" Inherits="AdminPanel_Employee_EmployeeList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <%--custom style for this page--%>
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <!-- Datatables Plugin -->
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%=gvEmployee.ClientID%>').prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" runat="Server">
 </asp:Content>
@@ -40,21 +38,21 @@
 
         <asp:Label ID="lblErrorMessage" runat="server" Text="" EnableViewState="false" CssClass="text-danger"></asp:Label>
         <div class="card-body ">
-            <div class="table-responsive table-hover bg-gray-100">
-                <asp:GridView ID="gvEmployee" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered   text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvEmployee_RowCommand">
+            <div class="table-responsive  bg-gray-100">
+                <asp:GridView ID="gvEmployee" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered  table-sm text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvEmployee_RowCommand">
                     <Columns>
-                        
+
                         <%--<asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" />--%>
                         <asp:BoundField DataField="EmployeeName" HeaderText="Name" />
-                        <asp:BoundField DataField="BirthDate" HeaderText="BirthDate"  />
+                        <asp:BoundField DataField="BirthDate" HeaderText="BirthDate" />
                         <asp:BoundField DataField="Address" HeaderText="Address" />
                         <asp:BoundField DataField="MobileNo" HeaderText="MobileNo" />
                         <asp:BoundField DataField="Post" HeaderText="PostName" />
                         <asp:BoundField DataField="Email" HeaderText="Email" />
                         <asp:BoundField DataField="JoiningDate" HeaderText="JoiningDate" />
-                        
+
                         <asp:TemplateField>
-                            <ItemTemplate   >
+                            <ItemTemplate>
                                 <asp:HyperLink ID="hlEdit" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Employee/EmployeeAddEdit.aspx?EmployeeID=" + Eval("EmployeeID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
                                 <asp:LinkButton ID="lbDelete" runat="server" CssClass="fas fa-trash" CommandName="DeleteEmployee" CommandArgument='<%# Eval("EmployeeID") %>'></asp:LinkButton>
                             </ItemTemplate>
@@ -66,6 +64,19 @@
 
         </div>
     </div>
-    <script src="<%=ResolveClientUrl("~/Content/vendor/jquery/Jquery-3.5.1.min.js")%>"></script>
+
+    <%--Script for sweetAlert--%>
+    <script>
+        function deleteAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Deleted Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    </script>
+    <%--Script for sweetAlert--%>
 </asp:Content>
 

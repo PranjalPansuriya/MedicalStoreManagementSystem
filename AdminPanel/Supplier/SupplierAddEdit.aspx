@@ -73,5 +73,17 @@
         </div>
     </div>
     <script src="<%=ResolveClientUrl("~/Content/vendor/jquery/Jquery-3.5.1.min.js")%>"></script>
+    <script> 
+        function insertAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Added Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        };
+        
+    </script>
 </asp:Content>
 

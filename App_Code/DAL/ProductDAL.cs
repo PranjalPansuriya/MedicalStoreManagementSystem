@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 
 /// <summary>
@@ -130,6 +129,8 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
                                     entProduct.Location = Convert.ToString(objSDR["Location"]);
                                 if (!objSDR["OtherDescription"].Equals(DBNull.Value))
                                     entProduct.OtherDescription = Convert.ToString(objSDR["OtherDescription"]);
+                                if (!objSDR["PricePerUnit"].Equals(DBNull.Value))
+                                    entProduct.PricePerUnit = Convert.ToDouble(objSDR["PricePerUnit"]);
 
                             }
                             return entProduct;
@@ -182,6 +183,7 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
                         objCmd.Parameters.AddWithValue("@DeliveryDate", entProduct.DeliveryDate);
                         objCmd.Parameters.AddWithValue("@Location", entProduct.Location);
                         objCmd.Parameters.AddWithValue("@OtherDescription", entProduct.OtherDescription);
+                        objCmd.Parameters.AddWithValue("@PricePerUnit", entProduct.PricePerUnit);
                         #endregion Prepare Command
 
                         objCmd.ExecuteNonQuery();
@@ -273,6 +275,7 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
                         objCmd.Parameters.AddWithValue("@DeliveryDate", entProduct.DeliveryDate);
                         objCmd.Parameters.AddWithValue("@Location", entProduct.Location);
                         objCmd.Parameters.AddWithValue("@OtherDescription", entProduct.OtherDescription);
+                        objCmd.Parameters.AddWithValue("@PricePerUnit", entProduct.PricePerUnit);
                         #endregion Prepare Command
 
                         objCmd.ExecuteNonQuery();

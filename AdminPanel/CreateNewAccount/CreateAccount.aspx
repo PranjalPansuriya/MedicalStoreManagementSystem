@@ -26,7 +26,7 @@
     <style>
         .datepicker td, .datepicker th {
             width: 2rem;
-            height: 2rem;
+            height: 2rem; 
             font-size: 0.85rem;
         }
 

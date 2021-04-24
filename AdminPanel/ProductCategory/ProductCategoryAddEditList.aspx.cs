@@ -6,7 +6,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -73,8 +72,9 @@ public partial class AdminPanel_ProductCategory_ProductCategoryAddEditList : Sys
             #region Product Category Add
             if (balProductCategory.Insert(entProductCategory))
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "insertAlert();", true);
                 txtProductCategoryName.Text = "";
-                Response.Redirect("~/AdminPanel/ProductCategory/ProductCategoryAddEditList.aspx");
+                FillGridViewProductCategory();
             }
             else
             {
@@ -146,6 +146,7 @@ public partial class AdminPanel_ProductCategory_ProductCategoryAddEditList : Sys
             {
                 if(balProductCategory.Delete(Convert.ToInt32(e.CommandArgument)))
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true);
                     FillGridViewProductCategory();
                 }
                 else

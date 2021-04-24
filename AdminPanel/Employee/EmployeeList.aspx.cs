@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -52,6 +51,7 @@ public partial class AdminPanel_Employee_EmployeeList : System.Web.UI.Page
             {
                 if(balEmployee.Delete(Convert.ToInt32(e.CommandArgument)))
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true); 
                     FillGridViewEmployee();
                 }
                 else

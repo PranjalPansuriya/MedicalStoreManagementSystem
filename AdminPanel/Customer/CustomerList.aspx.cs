@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -50,6 +49,7 @@ public partial class AdminPanel_Customer_CustomerList : System.Web.UI.Page
             {
                 if (balCustomer.Delete(Convert.ToInt32(e.CommandArgument)))
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true);
                     FillGridViewCustomer();
                 }
                 else

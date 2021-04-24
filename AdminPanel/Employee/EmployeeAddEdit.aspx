@@ -18,6 +18,18 @@
         }
     </style>
     <!-- Interal CSS for Datepicker-->
+    <script> 
+        function insertAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Added Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        };
+        
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" runat="Server">
 </asp:Content>

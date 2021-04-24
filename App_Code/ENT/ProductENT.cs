@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 
 /// <summary>
@@ -170,5 +169,22 @@ namespace MedicalStoreManagementSystem_AdminPanel.ENT
             }
         }
         #endregion OtherDescription
+
+        #region PricePerUnit
+        protected SqlDouble _PricePerUnit;
+        public SqlDouble PricePerUnit
+        {
+            get
+            {
+                return _PricePerUnit;
+            }
+            set
+            {
+                _PricePerUnit = value;
+            }
+        }
+         
+        #endregion PricePerUnit
+
     }
 }

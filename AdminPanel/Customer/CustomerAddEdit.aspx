@@ -1,6 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content/MedicalStoreAdminPanel.master" AutoEventWireup="true" CodeFile="CustomerAddEdit.aspx.cs" Inherits="AdminPanel_Customer_CustomerAddEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script> 
+        function insertAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Added Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        };
+        
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" Runat="Server">
 </asp:Content>

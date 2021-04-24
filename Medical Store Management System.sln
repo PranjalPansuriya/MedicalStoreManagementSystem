@@ -7,21 +7,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Medical Store Management Sy
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_51061"
-		Debug.AspNetCompiler.PhysicalPath = "..\Medical Store Management System\"
+		Debug.AspNetCompiler.PhysicalPath = "G:\ASP.Net\Assignment&Projects\Medical Store Management System\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51061\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_51061"
-		Release.AspNetCompiler.PhysicalPath = "..\Medical Store Management System\"
+		Release.AspNetCompiler.PhysicalPath = "G:\ASP.Net\Assignment&Projects\Medical Store Management System\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51061\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "51061"
-		SlnRelativePath = "..\Medical Store Management System\"
 	EndProjectSection
 EndProject
 Global
@@ -36,6 +35,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {07BE7C52-C582-44C8-8CF5-CEBD057A8FF8}
+		SolutionGuid = {B99E5A99-01FC-44B5-9190-E7CE7150F052}
 	EndGlobalSection
 EndGlobal

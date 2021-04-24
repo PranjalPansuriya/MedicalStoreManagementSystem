@@ -3,7 +3,6 @@ using MedicalStoreManagementSystem_AdminPanel.ENT;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -156,6 +155,7 @@ public partial class AdminPanel_Employee_EmployeeAddEdit : System.Web.UI.Page
             #region Employee Add
             if(balEmployee.Insert(entEmployee))
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "insertAlert();", true);
                 txtAddress.Text = "";
                 txtBirthDate.Text = "";
                 txtEmail.Text = "";
@@ -163,7 +163,7 @@ public partial class AdminPanel_Employee_EmployeeAddEdit : System.Web.UI.Page
                 txtJoiningDate.Text = "";
                 txtMobileNo.Text = "";
                 txtPost.Text = "";
-                Response.Redirect("~/AdminPanel/Employee/EmployeeList.aspx");
+                
             }
             else
             {
@@ -185,6 +185,7 @@ public partial class AdminPanel_Employee_EmployeeAddEdit : System.Web.UI.Page
                 txtMobileNo.Text = "";
                 txtPost.Text = "";
                 Response.Redirect("~/AdminPanel/Employee/EmployeeList.aspx");
+                
             }
             else
             {

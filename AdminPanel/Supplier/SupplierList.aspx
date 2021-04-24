@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content/MedicalStoreAdminPanel.master" AutoEventWireup="true" CodeFile="SupplierList.aspx.cs" Inherits="AdminPanel_Supplier_SupplierList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <!-- Datatables Plugin -->
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%=gvSupplier.ClientID%>').prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" Runat="Server">
 </asp:Content>
@@ -32,7 +39,7 @@
         <asp:Label ID="lblErrorMessage" runat="server" Text="" EnableViewState="false" CssClass="text-danger"></asp:Label>
         <div class="card-body ">
             <div class="table-responsive table-hover bg-gray-100">
-                <asp:GridView ID="gvSupplier" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered   text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvSupplier_RowCommand">
+                <asp:GridView ID="gvSupplier" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-sm  text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvSupplier_RowCommand">
                     <Columns>
                         
                         <%--<asp:BoundField DataField="SupplierID" HeaderText="SupplierID" />--%>
@@ -55,5 +62,20 @@
         </div>
     </div>
     <script src="<%=ResolveClientUrl("~/Content/vendor/jquery/Jquery-3.5.1.min.js")%>"></script>
+     <%--Script for sweetAlert--%>
+    <script>
+        function deleteAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Deleted Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+       
+        
+    </script>
+    <%--Script for sweetAlert--%>
 </asp:Content>
 

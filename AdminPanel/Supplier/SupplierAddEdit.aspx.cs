@@ -3,7 +3,6 @@ using MedicalStoreManagementSystem_AdminPanel.ENT;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -99,10 +98,10 @@ public partial class AdminPanel_Supplier_SupplierAddEdit : System.Web.UI.Page
             #region Supplier Add
             if (balSupplier.Insert(entSupplier))
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "insertAlert();", true);
                 txtSupplierName.Text = "";
                 txtAddress.Text = "";
                 txtContactNo.Text = "";
-                Response.Redirect("~/AdminPanel/Supplier/SupplierList.aspx");
             }
             else
             {

@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content/MedicalStoreAdminPanel.master" AutoEventWireup="true" CodeFile="ProductAddEdit.aspx.cs" Inherits="AdminPanel_Product_ProductAddEdit" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <!-- Custom styles for this template-->
-    <link href="../../Content/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../../Content/vendor/DatePicker/bootstrap-datepicker.css" rel="stylesheet" />
-    <link href="../../Content//vendor/DatePicker/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=ResolveClientUrl("~/Content/css/sb-admin-2.css")%>" rel="stylesheet" />
+    <link href="<%=ResolveClientUrl("~/Content/vendor/DatePicker/bootstrap-datepicker.css")%>"  rel="stylesheet"/>
     <!-- Interal CSS for Datepicker-->
     <style>
         .datepicker td, .datepicker th {
@@ -16,19 +15,31 @@
         .datepicker {
             margin-top: 1rem;
         }
-
     </style>
+    <script> 
+        function insertAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Added Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        };
+        
+    </script>
     <!-- Interal CSS for Datepicker-->
+   
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" runat="Server">
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cphAlerts" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphAlerts" runat="Server">
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="cphMessages" Runat="Server">
+<asp:Content ID="Content4" ContentPlaceHolderID="cphMessages" runat="Server">
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="cphProfile" Runat="Server">
+<asp:Content ID="Content5" ContentPlaceHolderID="cphProfile" runat="Server">
 </asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="cphPageContent" Runat="Server">
+<asp:Content ID="Content6" ContentPlaceHolderID="cphPageContent" runat="Server">
     <div class="card  shadow mb-4">
         <div class="card-header py-2">
             <h3 class="m-2 text-lg  text-info">
@@ -79,13 +90,13 @@
                         </div>
                     </div>
                     <br />
-                    
+
                     <div class="row align-items-center">
                         <div class="col-md-3 text-right text-gray-700 font-weight-bold text-uppercase">
                             Quantity :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtQuantity" runat="server" class="form-control " placeholder="Enter Quantity of Product"></asp:TextBox>
+                            <asp:TextBox ID="txtQuantity" runat="server" TextMode="Number" min="1" class="form-control " placeholder="Enter Quantity of Product"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvQuantity" runat="server" ErrorMessage="Enter Quantity of Product" Display="Dynamic" ControlToValidate="txtQuantity" CssClass="text-danger" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -112,6 +123,17 @@
                     <br />
                     <div class="row align-items-center">
                         <div class="col-md-3 text-right text-gray-700 font-weight-bold text-uppercase">
+                            Price Per Unit :
+                        </div>
+                        <div class="col-md-5">
+                            <asp:TextBox ID="txtPricePerUnit" runat="server" CssClass="form-control   date-time" autocomplete="off" placeholder="Enter Price Per Unit"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPricePerUnit" TextMode="Number" runat="server" ErrorMessage="Enter Price Per Unit" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtPricePerUnit" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="revPricePerUnit" runat="server" ErrorMessage="Enter Valid price" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPricePerUnit" ValidationGroup="AddProduct" ValidationExpression="^\d*\.?\d*$"></asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-right text-gray-700 font-weight-bold text-uppercase">
                             Location :
                         </div>
                         <div class="col-md-8">
@@ -120,7 +142,7 @@
                         </div>
                     </div>
                     <br />
-                     <div class="row align-items-center">
+                    <div class="row align-items-center">
                         <div class="col-md-3 text-right text-gray-700 font-weight-bold text-uppercase">
                             Other Description :
                         </div>
@@ -138,7 +160,7 @@
                             </div>
                             <div class="col-1"></div>
                             <div class="col-5 text-left">
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="btnCancel_Click"/>
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
                             </div>
                         </div>
                         <div class="col-4"></div>
@@ -150,15 +172,15 @@
         </div>
     </div>
     <!-- Core plugin JavaScript-->
-    <script src="../../Content/vendor/jquery/Jquery-3.5.1.min.js"></script>
-
-    <script src="../../Content/vendor/DatePicker/bootstrap-datepicker.min.js"></script>
+    <script src="<%=ResolveClientUrl("~/Content/vendor/jquery-easing/jquery.easing.min.js")%>"></script>
     <script src="<%=ResolveClientUrl("~/Content/vendor/jquery/Jquery-3.5.1.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("~/Content/vendor/DatePicker/bootstrap.bundle.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("~/Content/vendor/DatePicker/bootstrap-datepicker.min.js")%>"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $("#<%=txtExpiryDate.ClientID%>").datepicker({
-                
+
                 format: "mm/dd/yyyy",
                 changeYear: true,
                 changeMonth: true,
@@ -177,6 +199,8 @@
                 todayHighlight: true,
             });
         });
-</script>
+        
+    </script>
+   <script src="<%=ResolveClientUrl("~/Content/js/sb-admin-2.js")%>"></script>
 </asp:Content>
 

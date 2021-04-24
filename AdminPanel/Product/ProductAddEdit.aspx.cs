@@ -4,7 +4,6 @@ using MedicalStoreManagementSystem_AdminPanel.ENT;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -59,7 +58,7 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
         txtDeliveryDate.Text = dd.ToString("MM-dd-yyyy");
         txtLocation.Text = Convert.ToString(entProduct.Location);
         txtOtherDescription.Text = Convert.ToString(entProduct.OtherDescription);
-
+        txtPricePerUnit.Text = Convert.ToString(entProduct.PricePerUnit);
         #endregion Fill Controls
 
     }
@@ -102,20 +101,25 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
         {
             strErrorMsg += "- Enter Location </br>";
         }
-        
+        if (txtPricePerUnit.Text == "")
+        {
+            strErrorMsg += "- Enter Price Per Unit </br>";
+        }
         if (strErrorMsg != "")
         {
             lblErrorMessage.Text = strErrorMsg;
             return;
         }
 
+
+
         #endregion Server Side Validation
 
         #region Collect Data
         ProductENT entProduct = new ProductENT();
-        if (txtCompanyName.Text.Trim() != "")
+        if (txtProductName.Text.Trim() != "")
         {
-            entProduct.ProductName = txtCompanyName.Text.Trim();
+            entProduct.ProductName = Convert.ToString(txtProductName.Text.Trim());
         }
         if (ddlProductCategory.SelectedIndex != 0)
         {
@@ -127,7 +131,7 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
         }
         if (txtCompanyName.Text.Trim() != "")
         {
-            entProduct.CompanyName = txtCompanyName.Text.Trim();
+            entProduct.CompanyName = Convert.ToString(txtCompanyName.Text.Trim());
         }
         if (txtQuantity.Text.Trim() != "")
         {
@@ -143,11 +147,15 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
         }
         if (txtLocation.Text != "")
         {
-            entProduct.Location = txtLocation.Text.Trim();
+            entProduct.Location = Convert.ToString(txtLocation.Text.Trim());
         }
         if (txtOtherDescription.Text != "")
         {
-            entProduct.OtherDescription = txtOtherDescription.Text.Trim();
+            entProduct.OtherDescription = Convert.ToString(txtOtherDescription.Text.Trim());
+        }
+        if (txtPricePerUnit.Text != "")
+        {
+            entProduct.PricePerUnit = Convert.ToDouble(txtPricePerUnit.Text.Trim());
         }
         #endregion Collect Data
 
@@ -157,6 +165,7 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
             #region Product Add
             if (balProduct.Insert(entProduct))
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "insertAlert();", true);
                 txtProductName.Text = "";
                 ddlProductCategory.SelectedIndex = 0;
                 ddlSupplierName.SelectedIndex = 0;
@@ -166,7 +175,7 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
                 txtDeliveryDate.Text = "";
                 txtLocation.Text = "";
                 txtOtherDescription.Text = "";
-                Response.Redirect("~/AdminPanel/Product/ProductList.aspx");
+                txtPricePerUnit.Text = "";
             }
             else
             {
@@ -189,6 +198,7 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
                 txtDeliveryDate.Text = "";
                 txtLocation.Text = "";
                 txtOtherDescription.Text = "";
+                txtPricePerUnit.Text = "";
                 Response.Redirect("~/AdminPanel/Product/ProductList.aspx");
             }
             else
@@ -211,6 +221,7 @@ public partial class AdminPanel_Product_ProductAddEdit : System.Web.UI.Page
         txtDeliveryDate.Text = "";
         txtLocation.Text = "";
         txtOtherDescription.Text = "";
+        txtPricePerUnit.Text = "";
         Response.Redirect("~/AdminPanel/Product/ProductList.aspx");
     }
     #endregion btnCancel : OnClick

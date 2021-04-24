@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Content/MedicalStoreAdminPanel.master" AutoEventWireup="true" CodeFile="ProductList.aspx.cs" Inherits="AdminPanel_Product_ProductList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <!-- Datatables Plugin -->
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%=gvProduct.ClientID%>').prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" Runat="Server">
 </asp:Content>
@@ -32,7 +39,7 @@
         <asp:Label ID="lblErrorMessage" runat="server" Text="" EnableViewState="false" CssClass="text-danger"></asp:Label>
         <div class="card-body ">
             <div class="table-responsive table-hover bg-gray-100" style="overflow-x: scroll;">
-                <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered   text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvProduct_RowCommand">
+                <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-sm text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvProduct_RowCommand">
                     <Columns>
                         
                         <%--<asp:BoundField DataField="ProductID" HeaderText="ProductID" />--%>
@@ -42,9 +49,11 @@
                         <asp:BoundField DataField="SupplierName" HeaderText="Supplier" />
                         <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
                         <asp:BoundField DataField="ProductExpiryDate" HeaderText="Expiry Date" />
-                        <asp:BoundField DataField="DeliveryDate" HeaderText="Delivery Date" />
-                        <asp:BoundField DataField="Location" HeaderText="Location" />
-                        <asp:BoundField DataField="OtherDescription" HeaderText="OtherDescription" />
+                        
+                        <asp:BoundField DataField="PricePerUnit" HeaderText="PricePerUnit" />
+                        <%--<asp:BoundField DataField="Location" HeaderText="Location" />
+                            <asp:BoundField DataField="DeliveryDate" HeaderText="Delivery Date" />
+                        <asp:BoundField DataField="OtherDescription" HeaderText="OtherDescription" />--%>
 
                         <asp:TemplateField>
                             <ItemTemplate   >
@@ -59,6 +68,18 @@
 
         </div>
     </div>
+    <script>
+        function deleteAlert() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Record Deleted Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        
+    </script>
     <script src="<%=ResolveClientUrl("~/Content/vendor/jquery/Jquery-3.5.1.min.js")%>"></script>
 </asp:Content>
 

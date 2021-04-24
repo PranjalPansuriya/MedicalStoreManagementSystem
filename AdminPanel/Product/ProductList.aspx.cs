@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -50,6 +49,7 @@ public partial class AdminPanel_Product_ProductList : System.Web.UI.Page
             {
                 if (balProduct.Delete(Convert.ToInt32(e.CommandArgument)))
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true);
                     FillGridViewProduct();
                 }
                 else
