@@ -205,7 +205,7 @@ public partial class AdminPanel_Selling_SellingPanel : System.Web.UI.Page
 
     #endregion Calculate Total
 
-    #region ddlProductCategory :IndexCahanged (Fill ddlProductName)
+    #region ddlProductCategory :IndexChanged (Fill ddlProductName)
     protected void ddlProductCategory_SelectedIndexChanged(object sender, EventArgs e)
     {
         FillDropDownListProduct();
@@ -213,7 +213,7 @@ public partial class AdminPanel_Selling_SellingPanel : System.Web.UI.Page
         txtPrice.Text = "";
         txtStockAvailable.Text = "";
     }
-    #endregion ddlProductCategory :IndexCahanged (Fill ddlProductName)
+    #endregion ddlProductCategory :IndexChanged (Fill ddlProductName)
 
     #region btnCheckOut : OnClick
     protected void lbCheckOut_Click(object sender, EventArgs e)

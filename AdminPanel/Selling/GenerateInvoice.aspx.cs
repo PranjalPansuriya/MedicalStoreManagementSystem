@@ -43,9 +43,9 @@ public partial class AdminPanel_Selling_GenerateInvoice : System.Web.UI.Page
             lblCustomerName.Text = Convert.ToString(entCustomer.CustomerName);
             lblPaymentMethod.Text = Convert.ToString(entCustomer.PaymentMethod);
 
-            DateTime ed;
-            ed = Convert.ToDateTime(entCustomer.OrderDate.Value.ToString());
-            lblOrderDate.Text = ed.ToString("dd-MM-yyyy");
+            DateTime dt;
+            dt = Convert.ToDateTime(entCustomer.OrderDate.Value.ToString());
+            lblOrderDate.Text = dt.ToString("dd-MM-yyyy");
             lblMobileNo.Text = Convert.ToString(entCustomer.ContactNo);
             lblTotalAmount.Text = Convert.ToString(entCustomer.TotalAmount) + " ₹";
             lblOrderID.Text = Convert.ToString(Session["CustomerID"]);

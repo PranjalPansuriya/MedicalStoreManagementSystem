@@ -40,20 +40,19 @@
         <asp:Label ID="lblErrorMessage" runat="server" Text="" EnableViewState="false" CssClass="text-danger"></asp:Label>
         <div class="card-body ">
             <div class="table-responsive table-hover bg-gray-100">
-                <asp:GridView ID="gvCustomer" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-sm  text-gray-900" Width="100%" CellSpacing="0">
+                <asp:GridView ID="gvCustomer" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-sm  text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvCustomer_RowCommand">
                     <Columns>
                         
                         <%--<asp:BoundField DataField="CustomerID" HeaderText="CustomerID" />--%>
                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" />
                         <asp:BoundField DataField="ContactNo" HeaderText="ContactNo" />
                         <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" />
-                        
+                        <asp:BoundField DataField="TotalAmount" HeaderText ="TotalAmount"/>
                         <asp:TemplateField>
                             <ItemTemplate   >
                                 <%--<asp:HyperLink ID="hlEdit" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Customer/CustomerAddEdit.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>&nbsp&nbsp--%>
-                                 <asp:HyperLink ID="hlSellingPanel" runat="server"  CssClass="fas fa-shopping-cart " ForeColor="#073e1b" NavigateUrl='<%# "~/AdminPanel/Selling/SellingPanel.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
-                               <%-- <asp:LinkButton ID="lbDelete" runat="server" CssClass="fas fa-trash" CommandName="DeleteCustomer" CommandArgument='<%# Eval("CustomerID") %>'></asp:LinkButton>&nbsp&nbsp   
-                                <asp:HyperLink ID="hlCustomerDetail" runat="server" CssClass="far fa-eye" NavigateUrl='<%# "~/AdminPanel/Customer/CustomerDetail.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>--%>
+                                 <asp:HyperLink ID="hlSellingPanel" runat="server"  CssClass="fas fa-plus" ForeColor="#009933" NavigateUrl='<%# "~/AdminPanel/Selling/SellingPanel.aspx?CustomerID=" + Eval("CustomerID").ToString() %>' Visible='<%# Eval("TotalAmount").ToString() == "0" ? true : false %>'><span class="common" style="font-size:15px">Add</span></asp:HyperLink>
+                               <asp:LinkButton ID="lbInvoice" runat="server" CssClass="fas fa-eye " ForeColor="#073e1b" CommandName="ToInvoice" CommandArgument='<%# Eval("CustomerID") %>'  Visible='<%# Eval("TotalAmount").ToString() == "0" ? false : true %>'><span class="common" style="font-size:15px"> view</span></asp:LinkButton>
                                
                             </ItemTemplate>
                         </asp:TemplateField>

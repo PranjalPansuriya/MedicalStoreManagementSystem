@@ -12,7 +12,7 @@ public partial class AdminPanel_Customer_CustomerList : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         #region Check_for_Valid_User
-        if(Session["UserName"]==null)
+        if (Session["UserName"] == null)
         {
             Response.Redirect("~/AdminPanel/Login/Login.aspx");
         }
@@ -39,27 +39,18 @@ public partial class AdminPanel_Customer_CustomerList : System.Web.UI.Page
     }
     #endregion Fill GridView Customer
 
-    //#region Delete Customer
-    //protected void gvCustomer_RowCommand(object sender, GridViewCommandEventArgs e)
-    //{
-    //    if (e.CommandName == "DeleteCustomer")
-    //    {
-    //        CustomerBAL balCustomer = new CustomerBAL();
-    //        if (e.CommandArgument != null)
-    //        {
-    //            if (balCustomer.Delete(Convert.ToInt32(e.CommandArgument)))
-    //            {
-    //                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true);
-    //                FillGridViewCustomer();
-    //            }
-    //            else
-    //            {
-    //                lblErrorMessage.Text = balCustomer.Message;
-    //            }
-
-    //        }
-    //    }
-    //}
-    //#endregion Delete Customer
-
+    protected void gvCustomer_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if(e.CommandName=="ToInvoice")
+        {
+            if(e.CommandArgument!=null)
+            {
+                int CustomerID = Convert.ToInt32(e.CommandArgument);
+                #region Set Values To Session
+                Session["CustomerID"] = CustomerID;
+                #endregion Set Values To Session
+                Response.Redirect("~/AdminPanel/Selling/GenerateInvoice.aspx");
+            }
+        }
+    }
 }
