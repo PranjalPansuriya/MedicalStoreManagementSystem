@@ -26,7 +26,7 @@
                             Name :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtSupplierName" runat="server" class="form-control " placeholder="Enter Name"></asp:TextBox>
+                            <asp:TextBox ID="txtSupplierName" runat="server" class="form-control shadow-sm " placeholder="Enter Name"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvSupplierName" runat="server" ErrorMessage="Enter Name" Display="Dynamic" ControlToValidate="txtSupplierName" CssClass="text-danger" ValidationGroup="AddSupplier"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                             Address :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtAddress" runat="server" class="form-control " placeholder="Enter Address" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtAddress" runat="server" class="form-control shadow-sm" placeholder="Enter Address" TextMode="MultiLine"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ErrorMessage="Enter Address" Display="Dynamic" ControlToValidate="txtAddress" CssClass="text-danger" ValidationGroup="AddSupplier"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             Contact No :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtContactNo" runat="server" class="form-control " placeholder="Enter ContactNo" ></asp:TextBox>
+                            <asp:TextBox ID="txtContactNo" runat="server" class="form-control shadow-sm " placeholder="Enter ContactNo" ></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvContactNo" runat="server" ErrorMessage="Enter ContactNo" Display="Dynamic" ControlToValidate="txtContactNo" CssClass="text-danger" ValidationGroup="AddSupplier"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="revContactNo" runat="server" ControlToValidate="txtContactNo" Display="Dynamic" ErrorMessage="Enter Valid MobileNo" ValidationExpression="[0-9]{10}" CssClass="text-danger" ValidationGroup="AddSupplier"></asp:RegularExpressionValidator>
                         </div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-1"></div>
                             <div class="col-5 text-left">
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="btnCancel_Click"/>
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn shadow-lg" OnClick="btnCancel_Click"/>
                             </div>
                         </div>
                         <div class="col-4"></div>

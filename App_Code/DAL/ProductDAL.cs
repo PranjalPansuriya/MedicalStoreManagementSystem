@@ -158,6 +158,104 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
         }
         #endregion SelectByPK
 
+        #region SelectByProductCategoryID
+        public DataTable SelectByProductCategoryID(SqlInt32 ProductCategoryID)
+        {
+            using (SqlConnection objConn = new SqlConnection(ConnectionString))
+            {
+                objConn.Open();
+                using (SqlCommand objCmd = objConn.CreateCommand())
+                {
+                    try
+                    {
+                        #region Prepare Command
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "PR_Product_SelectForDropDownListByProductCatgeory";
+                        objCmd.Parameters.AddWithValue("@ProductCategoryID", ProductCategoryID);
+                        #endregion Prepare Command
+
+                        #region Read Data & Set Control
+                        DataTable dt = new DataTable();
+                        using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                        {
+                            //Convert.ToDateTime(objSDR["BirthDate"].ToString()).ToString("MM/dd/yyyy");
+                            dt.Load(objSDR);
+                        }
+                        return dt;
+                        #endregion Read Data & Set Control
+                    }
+
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.InnerException.Message;
+                        return null;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.InnerException.Message;
+                        return null;
+                    }
+                    finally
+                    {
+                        if (objConn.State == ConnectionState.Open)
+                            objConn.Close();
+                    }
+                }
+            }
+        }
+        #endregion SelectByPK
+
+        #region SelectQuantityByProductID
+        public int SelectQuantityByProductID(SqlInt32 ProductID)
+        {
+            using (SqlConnection objConn = new SqlConnection(ConnectionString))
+            {
+                objConn.Open();
+                using (SqlCommand objCmd = objConn.CreateCommand())
+                {
+                    try
+                    {
+                        #region Prepare Command
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "PR_Product_SelectQuantityByProductID";
+                        objCmd.Parameters.AddWithValue("@ProductID", ProductID);
+                        #endregion Prepare Command
+
+                        #region Read Data & Set Controls
+                        int Quantity = 0;
+                        using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                        {
+                            while (objSDR.Read())
+                            {
+                                
+                                if (!objSDR["Quantity"].Equals(DBNull.Value))
+                                    Quantity = Convert.ToInt32(objSDR["Quantity"]);
+                            }
+                            return Quantity;
+                        }
+                        #endregion Read Data & Set Controls
+                    }
+
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.InnerException.Message;
+                        return 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.InnerException.Message;
+                        return 0;
+                    }
+                    finally
+                    {
+                        if (objConn.State == ConnectionState.Open)
+                            objConn.Close();
+                    }
+                }
+            }
+        }
+        #endregion SelectQuantityByProductID
+
         #endregion Select Operation
 
         #region Insert Operation
@@ -301,5 +399,89 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
             }
         }
         #endregion Update Operation
+
+        #region Decrease Quantity When Product Added TO Cart
+        public Boolean DecreaseQuantity(SqlInt32 ProductID,SqlInt32 Quantity)
+        {
+            using (SqlConnection objConn = new SqlConnection(ConnectionString))
+            {
+                objConn.Open();
+                using (SqlCommand objCmd = objConn.CreateCommand())
+                {
+                    try
+                    {
+                        #region Prepare Command
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "PR_Product_DecreaseQuantityByProductID";
+                        objCmd.Parameters.AddWithValue("@ProductID", ProductID);
+                        objCmd.Parameters.AddWithValue("@Quantity", Quantity);
+                        
+                        #endregion Prepare Command
+
+                        objCmd.ExecuteNonQuery();
+                        return true;
+                    }
+
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.InnerException.Message;
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.InnerException.Message;
+                        return false;
+                    }
+                    finally
+                    {
+                        if (objConn.State == ConnectionState.Open)
+                            objConn.Close();
+                    }
+                }
+            }
+        }
+        #endregion Decrease Quantity When Product Added TO Cart
+
+        #region Increase Quantity When Product Removed From Cart
+        public Boolean IncreaseQuantity(SqlInt32 ProductID, SqlInt32 Quantity)
+        {
+            using (SqlConnection objConn = new SqlConnection(ConnectionString))
+            {
+                objConn.Open();
+                using (SqlCommand objCmd = objConn.CreateCommand())
+                {
+                    try
+                    {
+                        #region Prepare Command
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "PR_Product_IncreaseQuantityByProductID";
+                        objCmd.Parameters.AddWithValue("@ProductID", ProductID);
+                        objCmd.Parameters.AddWithValue("@Quantity", Quantity);
+
+                        #endregion Prepare Command
+
+                        objCmd.ExecuteNonQuery();
+                        return true;
+                    }
+
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.InnerException.Message;
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.InnerException.Message;
+                        return false;
+                    }
+                    finally
+                    {
+                        if (objConn.State == ConnectionState.Open)
+                            objConn.Close();
+                    }
+                }
+            }
+        }
+        #endregion Increase Quantity When Product Removed From Cart
     }
 }

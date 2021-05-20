@@ -21,7 +21,8 @@
     <!-- Custom icons for this template-->
 
     <!-- Custom fonts for this template-->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Roboto&display=swap" rel="stylesheet">
     <!-- Custom fonts for this template-->
 
     <!-- Custom styles for this template-->
@@ -37,24 +38,25 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="m-2 navbar-nav bg-gradient-primary sidebar sidebar-dark accordion shadow" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <div class="sidebar-brand d-flex align-items-center justify-content-center">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-notes-medical"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-2">
-                        <h5>Medical Store</h5>
-                        Admin panel
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="../../Content/img/MyLogo.png" width="120" height="100" />
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="text-gray-200" style="font-size: 1.3em;color:azure";>
+                            Best Care Pharmacy 
+                        </div>
+                    </div>
+                </div>
                 <!-- Divider -->
-                <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Employee -->
-                <li class="nav-item">
+                <li class="nav-item mt-2">
                     <a class="nav-link" href="../Employee/EmployeeList.aspx">
                         <i class="fas fa-fw fa-briefcase-medical"></i>
                         <span>Employee</span></a>
@@ -121,23 +123,19 @@
                 <hr class="sidebar-divider d-none d-md-block">
             </ul>
             <!-- End of Sidebar -->
-
+             
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-
+            <div id="content-wrapper" class="d-flex flex-column  mb-2  mt-2 mr-2 ">
+               
                 <!-- Main Content -->
                 <div id="content">
 
                     <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-light bg-topbar topbar mb-4 static-top shadow ">
 
                         <!-- Sidebar Toggler (Sidebar) -->
-                        <div class="text-center d-none d-md-inline">
-                            <button class="rounded-circle border-0" id="sidebarToggle">
-                            </button>
-                        </div>
-
-                        <a href="../../AdminPanel/AdminIndex/index.aspx"><i class="fas fa-home fa-2x  "></i></a>
+                        
+                        <a href="../../AdminPanel/AdminIndex/index.aspx"><i class="fas fa-home fa-2x text-gray-400" ></i></a>
 
                         <%--<!-- Topbar Search -->
                     <form
@@ -168,12 +166,15 @@
                             <asp:ContentPlaceHolder ID="cphProfile" runat="server">
                             </asp:ContentPlaceHolder>
 
+                            <li class="nav-item">
+                                <a href="../../AdminPanel/Selling/SellingPanel.aspx" class="btn btn-success  m-3">Go to Selling Panel</a>
+                            </li>
 
 
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="h5 text-dark m-3 ">Admin</span>
+                                    <span class="h5 text-gray-500 m-3 ">Admin</span>
                                     <asp:Image ID="imgProfile" runat="server" CssClass="img-profile rounded-circle" ImageUrl="~/Content/img/undraw_profile_2.svg" />
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -204,16 +205,6 @@
 
                 </div>
                 <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
 
             </div>
             <!-- End of Content Wrapper -->

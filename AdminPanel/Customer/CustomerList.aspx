@@ -27,7 +27,7 @@
                     <h2 class="m-2 text-lg  text-info">Customer List</h2>
                 </div>
                 <div class="col-md-2 align-bottom">
-                    <asp:HyperLink ID="hlAddCustomer" CssClass="btn btn-primary mr-2 mt-2 btn-sm " runat="server" NavigateUrl="~/AdminPanel/Customer/CustomerAddEdit.aspx"><i class="fas fa-plus"></i>  Add Customer</asp:HyperLink>
+                    <asp:HyperLink ID="hlAddCustomer" CssClass="btn btn-success shadow-lg mr-2 mt-2 btn-sm " runat="server" NavigateUrl="~/AdminPanel/Customer/CustomerAddEdit.aspx"><i class="fas fa-plus"></i>  Add Customer</asp:HyperLink>
                 </div>
             </div>
 
@@ -40,19 +40,21 @@
         <asp:Label ID="lblErrorMessage" runat="server" Text="" EnableViewState="false" CssClass="text-danger"></asp:Label>
         <div class="card-body ">
             <div class="table-responsive table-hover bg-gray-100">
-                <asp:GridView ID="gvCustomer" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-sm  text-gray-900" Width="100%" CellSpacing="0" OnRowCommand="gvCustomer_RowCommand">
+                <asp:GridView ID="gvCustomer" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-sm  text-gray-900" Width="100%" CellSpacing="0">
                     <Columns>
                         
                         <%--<asp:BoundField DataField="CustomerID" HeaderText="CustomerID" />--%>
                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" />
                         <asp:BoundField DataField="ContactNo" HeaderText="ContactNo" />
-                        <asp:BoundField DataField="PaymentMethod" HeaderText="Payment Method" />
-                        <asp:BoundField DataField="Amount" HeaderText="Amount" />
+                        <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" />
                         
                         <asp:TemplateField>
                             <ItemTemplate   >
-                                <asp:HyperLink ID="hlEdit" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Customer/CustomerAddEdit.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
-                                <asp:LinkButton ID="lbDelete" runat="server" CssClass="fas fa-trash" CommandName="DeleteCustomer" CommandArgument='<%# Eval("CustomerID") %>'></asp:LinkButton>
+                                <%--<asp:HyperLink ID="hlEdit" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Customer/CustomerAddEdit.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>&nbsp&nbsp--%>
+                                 <asp:HyperLink ID="hlSellingPanel" runat="server"  CssClass="fas fa-shopping-cart " ForeColor="#073e1b" NavigateUrl='<%# "~/AdminPanel/Selling/SellingPanel.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
+                               <%-- <asp:LinkButton ID="lbDelete" runat="server" CssClass="fas fa-trash" CommandName="DeleteCustomer" CommandArgument='<%# Eval("CustomerID") %>'></asp:LinkButton>&nbsp&nbsp   
+                                <asp:HyperLink ID="hlCustomerDetail" runat="server" CssClass="far fa-eye" NavigateUrl='<%# "~/AdminPanel/Customer/CustomerDetail.aspx?CustomerID=" + Eval("CustomerID").ToString() %>'></asp:HyperLink>--%>
+                               
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

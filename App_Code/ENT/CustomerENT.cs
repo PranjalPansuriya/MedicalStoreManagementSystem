@@ -50,6 +50,36 @@ namespace MedicalStoreManagementSystem_AdminPanel.ENT
         }
         #endregion CustomerName
 
+        #region ContactNo
+        protected SqlString _ContactNo;
+        public SqlString ContactNo
+        {
+            get
+            {
+                return _ContactNo;
+            }
+            set
+            {
+                _ContactNo = value;
+            }
+        }
+        #endregion ContactNo
+
+        #region OrderDate
+        protected SqlDateTime _OrderDate;
+        public SqlDateTime OrderDate
+        {
+            get
+            {
+                return _OrderDate;
+            }
+            set
+            {
+                _OrderDate = value;
+            }
+        }
+        #endregion OrderDate
+
         #region PaymentMethod
         protected SqlString _PaymentMethod;
         public SqlString PaymentMethod
@@ -65,34 +95,19 @@ namespace MedicalStoreManagementSystem_AdminPanel.ENT
         }
         #endregion PaymentMethod
 
-        #region Amount
-        protected SqlMoney _Amount;
-        public SqlMoney Amount
+        #region TotalAmount
+        protected SqlDouble _TotalAmount;
+        public SqlDouble TotalAmount
         {
             get
             {
-                return _Amount;
+                return _TotalAmount;
             }
             set
             {
-                _Amount = value;
+                _TotalAmount = value;
             }
         }
-        #endregion Amount
-
-        #region ContactNo
-        protected SqlString _ContactNo;
-        public SqlString ContactNo
-        {
-            get
-            {
-                return _ContactNo;
-            }
-            set
-            {
-                _ContactNo = value;
-            }
-        }
-        #endregion ContactNo
+        #endregion TotalAmount
     }
 }

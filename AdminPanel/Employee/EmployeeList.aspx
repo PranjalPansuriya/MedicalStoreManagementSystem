@@ -26,7 +26,7 @@
                     <h2 class="m-2 text-lg  text-info">Employee List</h2>
                 </div>
                 <div class="col-md-2 align-bottom">
-                    <asp:HyperLink ID="hlAddEmployee" CssClass="btn btn-primary mr-2 mt-2 btn-sm " runat="server" NavigateUrl="~/AdminPanel/Employee/EmployeeAddEdit.aspx"><i class="fas fa-plus"></i>  Add Employee</asp:HyperLink>
+                    <asp:HyperLink ID="hlAddEmployee" CssClass="btn mr-2 mt-2 btn-sm btn-success shadow-lg"    runat="server" NavigateUrl="~/AdminPanel/Employee/EmployeeAddEdit.aspx"><i class="fas fa-plus"></i>  Add Employee</asp:HyperLink>
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
 
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:HyperLink ID="hlEdit" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Employee/EmployeeAddEdit.aspx?EmployeeID=" + Eval("EmployeeID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
+                                <asp:HyperLink ID="hlEdit" ForeColor="#0b4e43" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Employee/EmployeeAddEdit.aspx?EmployeeID=" + Eval("EmployeeID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
                                 <asp:LinkButton ID="lbDelete" runat="server" CssClass="fas fa-trash" CommandName="DeleteEmployee" CommandArgument='<%# Eval("EmployeeID") %>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>

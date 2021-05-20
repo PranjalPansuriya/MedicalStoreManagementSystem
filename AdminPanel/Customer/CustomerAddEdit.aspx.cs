@@ -43,8 +43,6 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
         #region Fill Controls
         txtCustomerName.Text = Convert.ToString(entCustomer.CustomerName);
         txtContactNo.Text = Convert.ToString(entCustomer.ContactNo);
-        txtAmount.Text = Convert.ToString(entCustomer.Amount);
-        rblPaymentMethod.SelectedValue = Convert.ToString(entCustomer.PaymentMethod);
         #endregion Fill Controls
 
     }
@@ -56,10 +54,7 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
     {
         #region Server Side Validation
         String strErrorMsg = "";
-        if (txtAmount.Text == "")
-        {
-            strErrorMsg += "- Enter Amount </br>";
-        }
+       
         if (txtContactNo.Text == "")
         {
             strErrorMsg += "- Enter ContactNo </br>";
@@ -68,10 +63,7 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
         {
             strErrorMsg += "- Enter CustomerName </br>";
         }
-        if(rblPaymentMethod.SelectedValue==null)
-        {
-            strErrorMsg += "- Select PaymentMethod </br>";
-        }
+        
         if (strErrorMsg != "")
         {
             lblErrorMessage.Text = strErrorMsg;
@@ -82,10 +74,7 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
 
         #region Collect Data
         CustomerENT entCustomer = new CustomerENT();
-        if (txtAmount.Text.Trim() != "")
-        {
-            entCustomer.Amount = Convert.ToDecimal(txtAmount.Text.Trim());
-        }
+        
         if (txtContactNo.Text != "")
         {
             entCustomer.ContactNo = txtContactNo.Text.Trim();
@@ -93,11 +82,11 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
         if (txtCustomerName.Text.Trim() != "")
         {
             entCustomer.CustomerName = txtCustomerName.Text.Trim();
+            //also adding payment method & Total amount here
+            entCustomer.PaymentMethod = "By Cash";
+            entCustomer.TotalAmount = 0;
         }
-        if(rblPaymentMethod.SelectedValue != null)
-        {
-            entCustomer.PaymentMethod = Convert.ToString(rblPaymentMethod.SelectedValue);
-        }
+        
         #endregion Collect Data
         CustomerBAL balCustomer = new CustomerBAL();
         if (Request.QueryString["CustomerID"] == null)
@@ -106,10 +95,8 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
             if (balCustomer.Insert(entCustomer))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "insertAlert();", true);
-                txtAmount.Text = "";
                 txtContactNo.Text = "";
                 txtCustomerName.Text = "";
-                rblPaymentMethod.SelectedValue = null;
 
             }
             else
@@ -124,11 +111,8 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
             entCustomer.CustomerID = Convert.ToInt32(Request.QueryString["CustomerID"]);
             if (balCustomer.Update(entCustomer))
             {
-                txtAmount.Text = "";
                 txtContactNo.Text = "";
                 txtCustomerName.Text = "";
-                rblPaymentMethod.SelectedValue = null;
-
                 Response.Redirect("~/AdminPanel/Customer/CustomerList.aspx");
             }
             else
@@ -143,11 +127,8 @@ public partial class AdminPanel_Customer_CustomerAddEdit : System.Web.UI.Page
     #region btnCancel :  Onclick
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        txtAmount.Text = "";
         txtContactNo.Text = "";
         txtCustomerName.Text = "";
-        rblPaymentMethod.SelectedValue = null;
-        
         Response.Redirect("~/AdminPanel/Customer/CustomerList.aspx");
     }
     #endregion btnCancel :  Onclick

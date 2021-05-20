@@ -28,7 +28,6 @@
         };
         
     </script>
-    <!-- Interal CSS for Datepicker-->
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphTopbarHeading" runat="Server">
@@ -55,7 +54,7 @@
                             Product Name :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtProductName" runat="server" class="form-control " placeholder="Enter ProductName"></asp:TextBox>
+                            <asp:TextBox ID="txtProductName" runat="server" class="form-control shadow-sm" placeholder="Enter ProductName"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvProductName" runat="server" ErrorMessage="Enter Prdouct Name" Display="Dynamic" ControlToValidate="txtProductName" CssClass="text-danger" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -65,7 +64,7 @@
                             Product Catgeory :
                         </div>
                         <div class="col-md-8">
-                            <asp:DropDownList ID="ddlProductCategory" runat="server" CssClass="form-control" ValidationGroup="AddProduct"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlProductCategory" runat="server" CssClass="form-control shadow-sm" ValidationGroup="AddProduct"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvProductCategory" runat="server" ErrorMessage="Select Product Category" Display="Dynamic" ControlToValidate="ddlProductCategory" CssClass="text-danger" ValidationGroup="AddProduct" InitialValue="-1"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -75,7 +74,7 @@
                             Company Name :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtCompanyName" runat="server" class="form-control " placeholder="Enter CompanyName"></asp:TextBox>
+                            <asp:TextBox ID="txtCompanyName" runat="server" class="form-control shadow-sm" placeholder="Enter CompanyName"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvCompanyName" runat="server" ErrorMessage="Enter CompanyName" Display="Dynamic" ControlToValidate="txtCompanyName" CssClass="text-danger" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -85,7 +84,7 @@
                             Supplier Name :
                         </div>
                         <div class="col-md-8">
-                            <asp:DropDownList ID="ddlSupplierName" runat="server" CssClass="form-control" ValidationGroup="AddProduct"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSupplierName" runat="server" CssClass="form-control shadow-sm" ValidationGroup="AddProduct"></asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvSupplierName" runat="server" ErrorMessage="Select Supplier Name" Display="Dynamic" ControlToValidate="ddlSupplierName" CssClass="text-danger" ValidationGroup="AddProduct" InitialValue="-1"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -96,7 +95,7 @@
                             Quantity :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtQuantity" runat="server" TextMode="Number" min="1" class="form-control " placeholder="Enter Quantity of Product"></asp:TextBox>
+                            <asp:TextBox ID="txtQuantity" runat="server" TextMode="Number" min="1" class="form-control shadow-sm " placeholder="Enter Quantity of Product"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvQuantity" runat="server" ErrorMessage="Enter Quantity of Product" Display="Dynamic" ControlToValidate="txtQuantity" CssClass="text-danger" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -106,7 +105,7 @@
                             Delivery Date :
                         </div>
                         <div class="col-md-5">
-                            <asp:TextBox ID="txtDeliveryDate" runat="server" CssClass="form-control   date-time" autocomplete="off" placeholder="Select Date of Delivery"></asp:TextBox>
+                            <asp:TextBox ID="txtDeliveryDate" runat="server" CssClass="form-control   date-time shadow-sm" autocomplete="off" placeholder="Select Date of Delivery"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDeliveryDate" runat="server" ErrorMessage="Select Date of Delivery" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtDeliveryDate" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -116,7 +115,7 @@
                             Expiry Date :
                         </div>
                         <div class="col-md-5">
-                            <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control   date-time" autocomplete="off" placeholder="Select Date of Expiry"></asp:TextBox>
+                            <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control  shadow-sm date-time" autocomplete="off" placeholder="Select Date of Expiry"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvExpiryDate" runat="server" ErrorMessage="Select Date of Expiry" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtExpiryDate" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -126,8 +125,8 @@
                             Price Per Unit :
                         </div>
                         <div class="col-md-5">
-                            <asp:TextBox ID="txtPricePerUnit" runat="server" CssClass="form-control   date-time" autocomplete="off" placeholder="Enter Price Per Unit"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvPricePerUnit" TextMode="Number" runat="server" ErrorMessage="Enter Price Per Unit" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtPricePerUnit" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtPricePerUnit" runat="server" CssClass="form-control shadow-sm   date-time" autocomplete="off" placeholder="Enter Price Per Unit"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPricePerUnit" min="1" TextMode="Number" runat="server" ErrorMessage="Enter Price Per Unit" Display="Dynamic" CssClass="text-danger" ControlToValidate="txtPricePerUnit" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="revPricePerUnit" runat="server" ErrorMessage="Enter Valid price" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtPricePerUnit" ValidationGroup="AddProduct" ValidationExpression="^\d*\.?\d*$"></asp:RegularExpressionValidator>
                         </div>
                     </div>
@@ -137,7 +136,7 @@
                             Location :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtLocation" runat="server" class="form-control " placeholder="Enter Location of Product"></asp:TextBox>
+                            <asp:TextBox ID="txtLocation" runat="server" class="form-control shadow-sm " placeholder="Enter Location of Product"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvLocation" runat="server" ErrorMessage="Enter Location of Product" Display="Dynamic" ControlToValidate="txtLocation" CssClass="text-danger" ValidationGroup="AddProduct"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -147,7 +146,7 @@
                             Other Description :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtOtherDescription" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtOtherDescription" runat="server" class="form-control shadow-sm" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                     <br />
@@ -160,7 +159,7 @@
                             </div>
                             <div class="col-1"></div>
                             <div class="col-5 text-left">
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn shadow-lg" OnClick="btnCancel_Click" />
                             </div>
                         </div>
                         <div class="col-4"></div>

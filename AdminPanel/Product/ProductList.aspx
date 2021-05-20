@@ -26,7 +26,7 @@
                     <h2 class="m-2 text-lg  text-info">Product List</h2>
                 </div>
                 <div class="col-md-2 align-bottom">
-                    <asp:HyperLink ID="hlAddProduct" CssClass="btn btn-primary mr-2 mt-2 btn-sm " runat="server" NavigateUrl="~/AdminPanel/Product/ProductAddEdit.aspx"><i class="fas fa-plus"></i>  Add Product</asp:HyperLink>
+                    <asp:HyperLink ID="hlAddProduct" CssClass="btn btn-success mr-2 mt-2 btn-sm shadow-lg" runat="server" NavigateUrl="~/AdminPanel/Product/ProductAddEdit.aspx"><i class="fas fa-plus"></i>  Add Product</asp:HyperLink>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
 
                         <asp:TemplateField>
                             <ItemTemplate   >
-                                <asp:HyperLink ID="hlEdit" runat="server" CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Product/ProductAddEdit.aspx?ProductID=" + Eval("ProductID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
+                                <asp:HyperLink ID="hlEdit" runat="server" ForeColor="#073e1b"  CssClass="fas fa-edit" NavigateUrl='<%# "~/AdminPanel/Product/ProductAddEdit.aspx?ProductID=" + Eval("ProductID").ToString() %>'></asp:HyperLink>&nbsp&nbsp
                                 <asp:LinkButton ID="lbDelete" runat="server" CssClass="fas fa-trash" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductID") %>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>

@@ -39,27 +39,27 @@ public partial class AdminPanel_Customer_CustomerList : System.Web.UI.Page
     }
     #endregion Fill GridView Customer
 
-    #region Delete Customer
-    protected void gvCustomer_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        if (e.CommandName == "DeleteCustomer")
-        {
-            CustomerBAL balCustomer = new CustomerBAL();
-            if (e.CommandArgument != null)
-            {
-                if (balCustomer.Delete(Convert.ToInt32(e.CommandArgument)))
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true);
-                    FillGridViewCustomer();
-                }
-                else
-                {
-                    lblErrorMessage.Text = balCustomer.Message;
-                }
+    //#region Delete Customer
+    //protected void gvCustomer_RowCommand(object sender, GridViewCommandEventArgs e)
+    //{
+    //    if (e.CommandName == "DeleteCustomer")
+    //    {
+    //        CustomerBAL balCustomer = new CustomerBAL();
+    //        if (e.CommandArgument != null)
+    //        {
+    //            if (balCustomer.Delete(Convert.ToInt32(e.CommandArgument)))
+    //            {
+    //                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "deleteAlert();", true);
+    //                FillGridViewCustomer();
+    //            }
+    //            else
+    //            {
+    //                lblErrorMessage.Text = balCustomer.Message;
+    //            }
 
-            }
-        }
-    }
-    #endregion Delete Customer
+    //        }
+    //    }
+    //}
+    //#endregion Delete Customer
 
 }

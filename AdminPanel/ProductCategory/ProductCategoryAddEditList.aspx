@@ -33,7 +33,7 @@
                            Product Category :
                         </div>
                         <div class="col-md-8">
-                            <asp:TextBox ID="txtProductCategoryName" runat="server" class="form-control" placeholder="Enter Product Category"></asp:TextBox>
+                            <asp:TextBox ID="txtProductCategoryName" runat="server" class="form-control shadow-sm" placeholder="Enter Product Category"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvProductCategoryName" runat="server" ErrorMessage="Enter Product Category" Display="Dynamic" ControlToValidate="txtProductCategoryName" CssClass="text-danger" ValidationGroup="AddProductCategory"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-1"></div>
                             <div class="col-5 text-left">
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="btnCancel_Click"  />
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn shadow-lg" OnClick="btnCancel_Click"  />
                             </div>
                         </div>
                         <div class="col-4"></div>
@@ -70,7 +70,7 @@
                         <asp:BoundField DataField="ProductCategoryName" HeaderText="Product Category Name" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:HyperLink ID="hlEdit" runat="server"  class=" fas fa-edit" NavigateUrl='<%# "~/AdminPanel/ProductCategory/ProductCategoryAddEditList.aspx?ProductCategoryID=" + Eval("ProductCategoryID").ToString() %>'></asp:HyperLink>&nbsp&nbsp&nbsp
+                                <asp:HyperLink ID="hlEdit" runat="server"  ForeColor="#0b4e43" class=" fas fa-edit" NavigateUrl='<%# "~/AdminPanel/ProductCategory/ProductCategoryAddEditList.aspx?ProductCategoryID=" + Eval("ProductCategoryID").ToString() %>'></asp:HyperLink>&nbsp&nbsp&nbsp
                                 <asp:LinkButton ID="lbDelete" runat="server"  CssClass="fas fa-trash" CommandName="DeleteProductCategory" CommandArgument='<%# Eval("ProductCategoryID") %>' ></asp:LinkButton>
                                 
                             </ItemTemplate>

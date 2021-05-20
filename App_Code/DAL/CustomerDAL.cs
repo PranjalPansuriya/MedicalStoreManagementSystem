@@ -115,10 +115,12 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
                                     entCustomer.CustomerName = Convert.ToString(objSDR["CustomerName"]);
                                 if (!objSDR["ContactNo"].Equals(DBNull.Value))
                                     entCustomer.ContactNo = Convert.ToString(objSDR["ContactNo"]);
+                                if (!objSDR["OrderDate"].Equals(DBNull.Value))
+                                    entCustomer.OrderDate = Convert.ToDateTime(objSDR["OrderDate"]);
                                 if (!objSDR["PaymentMethod"].Equals(DBNull.Value))
                                     entCustomer.PaymentMethod = Convert.ToString(objSDR["PaymentMethod"]);
-                                if (!objSDR["Amount"].Equals(DBNull.Value))
-                                    entCustomer.Amount = Convert.ToDecimal(objSDR["Amount"]);
+                                if (!objSDR["TotalAmount"].Equals(DBNull.Value))
+                                    entCustomer.TotalAmount = Convert.ToDouble(objSDR["TotalAmount"]);
                             }
                             return entCustomer;
                         }
@@ -145,6 +147,54 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
         }
         #endregion SelectByPK
 
+        #region SelectAllProductByCustomerID
+        public DataTable SelectAllProductByCustomerID(SqlInt32 CustomerID)
+        {
+            using (SqlConnection objConn = new SqlConnection(ConnectionString))
+            {
+                objConn.Open();
+                using (SqlCommand objCmd = objConn.CreateCommand())
+                {
+                    try
+                    {
+                        #region Prepare Command
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "PR_Customer_SelectAllProductByCustomerID";
+                        objCmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        #endregion Prepare Command
+
+                        #region Read Data & Set Control
+                        DataTable dt = new DataTable();
+                        using (SqlDataReader objSDR = objCmd.ExecuteReader())
+                        {
+                            //Convert.ToDateTime(objSDR["BirthDate"].ToString()).ToString("MM/dd/yyyy");
+                            dt.Load(objSDR);
+                        }
+                        return dt;
+                        #endregion Read Data & Set Control
+                    }
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.Message;
+                        return null;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                        return null;
+                    }
+                    finally
+                    {
+                        if (objConn.State == ConnectionState.Open)
+                        {
+                            objConn.Close();
+                        }
+                    }
+                }
+            }
+        }
+        #endregion SelectAll
+
         #endregion Select Operation
 
         #region Insert Operation
@@ -164,8 +214,7 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
                         objCmd.Parameters.AddWithValue("@CustomerName", entCustomer.CustomerName);
                         objCmd.Parameters.AddWithValue("@ContactNo", entCustomer.ContactNo);
                         objCmd.Parameters.AddWithValue("@PaymentMethod", entCustomer.PaymentMethod);
-                        objCmd.Parameters.AddWithValue("@Amount", entCustomer.Amount);
-                       
+                        objCmd.Parameters.AddWithValue("@TotalAmount", entCustomer.TotalAmount);
                         #endregion Prepare Command
 
                         objCmd.ExecuteNonQuery();
@@ -193,46 +242,48 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
         }
         #endregion Insert Operation
 
-        #region Delete Operation
-        public Boolean Delete(SqlInt32 CustomerID)
-        {
-            using (SqlConnection objConn = new SqlConnection(ConnectionString))
-            {
-                objConn.Open();
-                using (SqlCommand objCmd = objConn.CreateCommand())
-                {
-                    try
-                    {
-                        #region Prepare_Command
-                        objCmd.CommandType = CommandType.StoredProcedure;
-                        objCmd.CommandText = "PR_Customer_DeleteByPK";
-                        objCmd.Parameters.AddWithValue("@CustomerID", CustomerID);
-                        #endregion Prepare_Command
+        //#region Delete Operation
+        //public Boolean Delete(SqlInt32 CustomerID)
+        //{
+        //    using (SqlConnection objConn = new SqlConnection(ConnectionString))
+        //    {
+        //        objConn.Open();
+        //        using (SqlCommand objCmd = objConn.CreateCommand())
+        //        {
+        //            try
+        //            {
+        //                #region Prepare_Command
+        //                objCmd.CommandType = CommandType.StoredProcedure;
+        //                objCmd.CommandText = "PR_Customer_DeleteByPK";
+        //                objCmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+        //                #endregion Prepare_Command
 
-                        objCmd.ExecuteNonQuery();
-                        return true;
-                    }
-                    catch (SqlException sqlex)
-                    {
-                        Message = sqlex.InnerException.Message;
-                        return false;
-                    }
-                    catch (Exception ex)
-                    {
-                        Message = ex.InnerException.Message;
-                        return false;
-                    }
-                    finally
-                    {
-                        if (objConn.State == ConnectionState.Open)
-                        {
-                            objConn.Close();
-                        }
-                    }
-                }
-            }
-        }
-        #endregion Delete Operation
+        //                objCmd.ExecuteNonQuery();
+        //                return true;
+        //            }
+        //            catch (SqlException sqlex)
+        //            {
+        //                Message = sqlex.InnerException.Message;
+        //                return false;
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Message = ex.InnerException.Message;
+        //                return false;
+        //            }
+        //            finally
+        //            {
+        //                if (objConn.State == ConnectionState.Open)
+        //                {
+        //                    objConn.Close();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //#endregion Delete Operation
+
+
 
         #region Update Operation
         public Boolean Update(CustomerENT entCustomer)
@@ -251,7 +302,6 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
                         objCmd.Parameters.AddWithValue("@CustomerName", entCustomer.CustomerName);
                         objCmd.Parameters.AddWithValue("@ContactNo", entCustomer.ContactNo);
                         objCmd.Parameters.AddWithValue("@PaymentMethod", entCustomer.PaymentMethod);
-                        objCmd.Parameters.AddWithValue("@Amount", entCustomer.Amount);
                         #endregion Prepare Command
 
                         objCmd.ExecuteNonQuery();
@@ -277,6 +327,48 @@ namespace MedicalStoreManagementSystem_AdminPanel.DAL
             }
         }
         #endregion Update Operation
+
+        #region Update Total Amount & PaymentMethod 
+        public Boolean UpdateTotalAmountPaymentMethod(SqlInt32 CustomerID,SqlDouble TotalAmount,SqlString PaymentMethod)
+        {
+            using (SqlConnection objConn = new SqlConnection(ConnectionString))
+            {
+                objConn.Open();
+                using (SqlCommand objCmd = objConn.CreateCommand())
+                {
+                    try
+                    {
+                        #region Prepare Command
+                        objCmd.CommandType = CommandType.StoredProcedure;
+                        objCmd.CommandText = "PR_Customer_UpdateTotalAmountPaymentMethodByCustomerID";
+                        objCmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        objCmd.Parameters.AddWithValue("@TotalAmount",TotalAmount);
+                        objCmd.Parameters.AddWithValue("@PaymentMethod", PaymentMethod);
+                        #endregion Prepare Command
+
+                        objCmd.ExecuteNonQuery();
+                        return true;
+                    }
+
+                    catch (SqlException sqlex)
+                    {
+                        Message = sqlex.InnerException.Message;
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.InnerException.Message;
+                        return false;
+                    }
+                    finally
+                    {
+                        if (objConn.State == ConnectionState.Open)
+                            objConn.Close();
+                    }
+                }
+            }
+        }
+        #endregion Update Total Amount & PaymentMethod
 
     }
 

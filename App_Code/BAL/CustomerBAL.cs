@@ -55,20 +55,29 @@ namespace MedicalStoreManagementSystem_AdminPanel.BAL
         }
         #endregion SelectByPK
 
-        #region Delete Operation
-        public Boolean Delete(SqlInt32 CustomerID)
+        #region SelectAllProductsByCustomerID
+        public DataTable SelectAllProductByCustomerID(SqlInt32 CustomerID)
         {
             CustomerDAL dalCustomer = new CustomerDAL();
-            if (dalCustomer.Delete(CustomerID))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return dalCustomer.SelectAllProductByCustomerID(CustomerID);
+
         }
-        #endregion Delete Operation
+        #endregion SelectAllProductsByCustomerID
+
+        //#region Delete Operation
+        //public Boolean Delete(SqlInt32 CustomerID)
+        //{
+        //    CustomerDAL dalCustomer = new CustomerDAL();
+        //    if (dalCustomer.Delete(CustomerID))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+        //#endregion Delete Operation
 
         #region Insert Operation
         public Boolean Insert(CustomerENT entCustomer)
@@ -99,5 +108,20 @@ namespace MedicalStoreManagementSystem_AdminPanel.BAL
             }
         }
         #endregion Update Operation
+
+        #region Update TotalAmount & PaymenTMethod
+        public Boolean UpdateTotalAmountPaymentMethod(SqlInt32 CustomerID,SqlDouble TotalAmount,SqlString PaymentMethod)
+        {
+            CustomerDAL dalCustomer = new CustomerDAL();
+            if (dalCustomer.UpdateTotalAmountPaymentMethod(CustomerID,TotalAmount,PaymentMethod))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion Update TotalAmount & PaymenTMethod
     }
 }
